@@ -25,9 +25,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const defaultTopicName = 'node.kafka.test.t'
+const kafkaHost = 'host1:9092,host2:9092,host3:9092'
 
 const client = new kafka.KafkaClient({
-  kafkaHost: 'jktdc-mdwpoc1.azlife.allianz.co.id:9092,jktdc-mdwpoc2.azlife.allianz.co.id:9092,jktdc-mdwpoc3.azlife.allianz.co.id:9092'
+  kafkaHost: kafkaHost
 });
 const producer = new kafka.HighLevelProducer(client);
 const consumer = new kafka.Consumer(client, [{ topic: defaultTopicName }], {
